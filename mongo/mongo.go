@@ -32,7 +32,8 @@ func Update(collectionName string, selector bson.M, update interface{}) error {
 }
 
 func Find(collectionName string, query interface{}) (interface{}, error) {
-	var result []interface{}
+	result := make([]interface{}, 0)
+
 	exec := func(collection *mgo.Collection) error {
 		return collection.Find(query).All(&result)
 	}
